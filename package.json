@@ -4,7 +4,9 @@
   "description": "",
   "main": "./server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsc",
+    "start": "node dist/server.js",
+    "dev": "nodemon server.ts"
   },
   "repository": {
     "type": "git",
@@ -19,11 +21,15 @@
   "homepage": "https://github.com/desantamaria/ottocomplete-backend#readme",
   "dependencies": {
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "openai": "^4.85.4"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.5",
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
 }
