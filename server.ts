@@ -16,7 +16,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware
-// app.use(express.json());
+app.use(express.json());
 
 // Allow all origins
 app.use(
@@ -31,6 +31,8 @@ app.use(
 app.post("/api/chat", async (req, res: any) => {
   try {
     const { message, context = {} } = req.body;
+
+    console.log("request", req.body);
 
     if (!message) {
       return res.status(400).json({ error: "Message is required" });
