@@ -6,7 +6,7 @@ dotenv.config();
 
 const logger = new Logger("geminiClient");
 
-export interface Message {
+interface Message {
   role: "system" | "user" | "assistant";
   content: string;
 }

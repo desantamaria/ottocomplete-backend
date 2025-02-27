@@ -1,19 +1,34 @@
-import express, { response } from "express";
+var cors = require("cors");
+import express from "express";
 import { SYSTEM_PROMPT } from "./prompt";
-import { getGeminiResponse, Message } from "./gemini";
+import { getGeminiResponse } from "./gemini";
 const dotenv = require("dotenv");
 
 dotenv.config();
 
+type Message = {
+  role: "system" | "user" | "assistant";
+  content: string;
+};
+
+// Initialize Express app
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware
+// app.use(express.json());
 
-app.use(express.json());
+// Allow all origins
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 // Gemini chat endpoint
-app.post("/api/chat", async (req: any, res: any) => {
+app.post("/api/chat", async (req, res: any) => {
   try {
     const { message, context = {} } = req.body;
 
